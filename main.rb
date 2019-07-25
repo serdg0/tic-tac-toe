@@ -2,30 +2,42 @@ require_relative 'player.rb'
 require_relative 'board.rb'
 require_relative 'output.rb'
 
-def game_reset
-    $new_board = Board.new
-    new_output = Output.new
-    new_output.greetings
-    $player1 = Player.new
-    $player2 = Player.new
-    new_output.gather_data
-    $turn_count = 0
-    $whos_turn = $turn_count % 2 == 0 ? $player1 : $player2 
-    new_output.first_turn
-    $new_board.display_board
-
-    while !$new_board.is_winner($board, $whos_turn)
-        #$first_turn = $turn_count % 2 == 0 ? $player1 : $player2
-        new_output.turn
-    end
-end
-
 class Game
-    game_reset
-    puts "Another round? y/n"
-    answer = gets.chomp.upcase
-    answer == "Y" ? Game.new : (puts "Thanks for playing!")
+
+    attr_accessor :player_1 :player_2
+
+    def initialize(player_1, player_2, board)
+        @player_1 = player_1
+        @player_2 = player_2
+        @board = Board.new
+        @turn = 0
+        @this_turn = this_turn
+    end
+
+    def first_turn(player_1, player_2)
+        first = [player_1, player_2].shuffle.shift
+        second = (first == player_1 ? player_2 : player_1)
+        whos_first_message(first)
+    end
+
+    def turn
+        @turn
+    end
+
+    def turn_count
+        @turn+=1
+    end
+
+    def is_turn_even?
+        @turn % 2 == 0 ? true : false
+    end
+
+    def draw?
+        true if @turn == 9
+    end
+
+    def current_turn
+        is_turn_even? ? player_1.this_turn : player_2.this_turn
+    end
+
 end
-
-Game.new
-
