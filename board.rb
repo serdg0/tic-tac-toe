@@ -1,44 +1,66 @@
+#require_relative 'player.rb'
 class Board
-
-    attr_accessor :cell, :grid
+    #include Messages
 
     def initialize
-        @grid = grid
-    end
-
-    def grid
-        (1..9).map { |x| x.to_s }
+        @grid = [[1,2,3],[4,5,6],[7,8,9]]
+        @grid_accessor = {
+            1 => @grid[0][0],
+            2 => @grid[0][1],
+            3 => @grid[0][2],
+            4 => @grid[1][0],
+            5 => @grid[1][1],
+            6 => @grid[1][2],
+            7 => @grid[2][0],
+            8 => @grid[2][1],
+            9 => @grid[2][2]
+        }
+        @cells = {
+            1 => false,
+            2 => false,
+            3 => false,
+            4 => false,
+            5 => false,
+            6 => false,
+            7 => false,
+            8 => false,
+            9 => false
+        }
     end
 
     def display_board
-        puts " #{grid[0]} | #{grid[1]} | #{grid[2]} "
+        puts " #{@grid[0][0]} | #{@grid[0][1]} | #{@grid[0][2]} "
         puts "---+---+---"
-        puts " #{grid[3]} | #{grid[4]} | #{grid[5]} "
+        puts " #{@grid[1][0]} | #{@grid[1][1]} | #{@grid[1][2]} "
         puts "---+---+---"
-        puts " #{grid[6]} | #{grid[7]} | #{grid[8]} "
+        puts " #{@grid[2][0]} | #{@grid[2][1]} | #{@grid[2][2]} "
         puts "\n"   
     end
-
-    def display_board_with_player_input(input)
-        show("Go on #{player}, make your move")
-        player_input = gets.chomp
+    
+    def ask_for_move(player)
+        show("Go on #{player.name}, make your move")
     end
 
+    def player_input
+        return input = gets.chomp
+    end
 
-    def is_winner(board,player)
-        winning_positions = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
-        win = false
-        winning_positions.each do |cell|
-            count = 0
-            cell.each do |position|
-                count+=1 if  board[position-1] == player.color
-            end
-            win = true if count == 3
+    def display_board_with_player_input(player_input)
+        if (1..9).include? player_input && @cells[player_input] == false
+            @grid_accessor[player_input] = player.color #how am i going to acces the player on this method?
+            @cells.update(@cells) { |key,value| value = true if key == player_input }
+        else
+            show("Not a valid move bro")
+            ask_for_move(player)
         end
-        win
     end
+
+
 
 end
 
-test = Board.new 
+test = Board.new
+
 puts test.display_board
+#test.ask_for_move
+#puts test.display_board_with_player_input

@@ -3,13 +3,11 @@ require_relative 'board.rb'
 require_relative 'output.rb'
 
 class Game
-
-    attr_accessor :player_1 :player_2
-
+    include Messages
     def initialize(player_1, player_2, board)
         @player_1 = player_1
         @player_2 = player_2
-        @board = Board.new
+        @board = board
         @turn = 0
         @this_turn = this_turn
     end
@@ -40,4 +38,30 @@ class Game
         is_turn_even? ? player_1.this_turn : player_2.this_turn
     end
 
+
 end
+=begin
+def class Start
+    def initialize(game)
+        @game = game
+    end
+    ask player names
+    start board
+    ask for moves until it reaches 9 on that case is a draw
+    check is theres a winner in each move 
+    game over
+
+    while @turn !=10 
+        ask for move 
+        check if theres winner
+        if there is one, break
+        change person (turn_count)
+    end
+    draw
+end
+=end
+player_1 = Player.new
+player_2 = Player.new
+board = Board.new
+game = Game.new(player_1, player_2, board)
+game.ask_for_move(player_1)

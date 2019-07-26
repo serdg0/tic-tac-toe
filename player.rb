@@ -1,9 +1,7 @@
 class Player
-  include Messages
-
     attr_accessor :name, :color
 
-    def initialize(name, color)
+    def initialize
       @name = name
       @color = color
     end
@@ -18,7 +16,7 @@ class Player
       color = gets.chomps.upcase
       if (color != "X") || (color != "Y")
         show("Not a valid color!")
-        self
+        return choose_color
       elsif (color == "X")
         player.color == color.red
       elsif (color == "O")
