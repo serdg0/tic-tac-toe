@@ -38,7 +38,7 @@ class Game
         puts "Make a shot"
         input = gets.chomp
         if [1..9].include?(input.to_i)
-            return input.to_i
+            input.to_i
         else
             puts "Not a valid input, put another one"
             return get_input
@@ -75,24 +75,5 @@ class TicTacToe
 end
 
 TicTacToe.new
-=begin
-def class Start
-    def initialize(game)
-        @game = game
-    end
-    ask player names
-    start board
-    ask for moves until it reaches 9 on that case is a draw
-    check is theres a winner in each move 
-    game over
 
-    while @turn !=10 
-        ask for move 
-        check if theres winner
-        if there is one, break
-        change person (turn_count)
-    end
-    draw
-end
-=end
 
