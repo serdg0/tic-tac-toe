@@ -1,21 +1,25 @@
 require_relative 'player.rb'
 require_relative 'board.rb'
-require_relative 'output.rb'
 
 class Game
-    include Messages
-    def initialize(player_1, player_2, board)
+    attr_accessor :turn
+    def initialize(player_1 = Player.new, player_2 = Player.new, board = Board.new)
         @player_1 = player_1
         @player_2 = player_2
         @board = board
         @turn = 0
-        @this_turn = this_turn
     end
 
-    def first_turn(player_1, player_2)
-        first = [player_1, player_2].shuffle.shift
-        second = (first == player_1 ? player_2 : player_1)
-        whos_first_message(first)
+    def set_players
+        puts "What's your name?"
+        @player_1.name = gets.chomp
+        @player_1.color = "X".red
+        puts "Your icon is #{@player_1.color}. You will make the first shot"
+        puts "And your name?"
+        @player_2.name = gets.chomp
+        @player_2.color = "O".blue
+        puts "Your icon is #{@player_2.color}. You will go second"
+        return @player_1
     end
 
     def turn
@@ -26,20 +30,51 @@ class Game
         @turn+=1
     end
 
-    def is_turn_even?
-        @turn % 2 == 0 ? true : false
+    def draw
+        puts "This is a draw"
     end
 
-    def draw?
-        true if @turn == 9
+    def get_input
+        puts "Make a shot"
+        input = gets.chomp
+        if [1..9].include?(input.to_i)
+            return input.to_i
+        else
+            puts "Not a valid input, put another one"
+            return get_input
+        end
     end
 
-    def current_turn
-        is_turn_even? ? player_1.this_turn : player_2.this_turn
+    def switch_board(input, current_player)
+        @board.return_board_input(input,current_player)
     end
 
+    def winner?(current_player)
+        @board.check_winner?(current_player)
+    end
 
+    def display_board
+        @board.new_board
+    end
 end
+
+class TicTacToe
+    
+    game = Game.new
+    current_player = game.set_players
+    game.display_board
+    while game.turn <= 9
+        input = game.get_input
+        game.switch_board(input,current_player)
+        puts "#{current_player} WINS!" if game.winner?(current_player)
+        game.display_board
+        turn_count
+        current_player = (current_player == player_1 ? player_2 : player_1)
+    end
+    game.draw
+end
+
+TicTacToe.new
 =begin
 def class Start
     def initialize(game)
@@ -60,8 +95,4 @@ def class Start
     draw
 end
 =end
-player_1 = Player.new
-player_2 = Player.new
-board = Board.new
-game = Game.new(player_1, player_2, board)
-game.ask_for_move(player_1)
+

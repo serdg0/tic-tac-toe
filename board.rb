@@ -1,6 +1,5 @@
 #require_relative 'player.rb'
 class Board
-    #include Messages
 
     def initialize
         @grid = [[1,2,3],[4,5,6],[7,8,9]]
@@ -28,39 +27,36 @@ class Board
         }
     end
 
-    def display_board
-        puts " #{@grid[0][0]} | #{@grid[0][1]} | #{@grid[0][2]} "
+    def new_board
+        puts " #{@grid_accessor[1]} | #{@grid_accessor[2]} | #{@grid_accessor[3]} "
         puts "---+---+---"
-        puts " #{@grid[1][0]} | #{@grid[1][1]} | #{@grid[1][2]} "
+        puts " #{@grid_accessor[4]} | #{@grid_accessor[5]} | #{@grid_accessor[6]} "
         puts "---+---+---"
-        puts " #{@grid[2][0]} | #{@grid[2][1]} | #{@grid[2][2]} "
+        puts " #{@grid_accessor[7]} | #{@grid_accessor[8]} | #{@grid_accessor[9]} "
         puts "\n"   
     end
-    
-    def ask_for_move(player)
-        show("Go on #{player.name}, make your move")
+
+    def check_cell_occupied?(input)
+        return @cells[input]
     end
 
-    def player_input
-        return input = gets.chomp
-    end
-
-    def display_board_with_player_input(player_input)
-        if (1..9).include? player_input && @cells[player_input] == false
-            @grid_accessor[player_input] = player.color #how am i going to acces the player on this method?
-            @cells.update(@cells) { |key,value| value = true if key == player_input }
-        else
-            show("Not a valid move bro")
-            ask_for_move(player)
+    def return_board_input(input,current_player)
+        if check_cell_occupied?(input)
+            puts "This cell is occupied, try another one"
+            return get_input
+        else   
+            @grid_accessor[input] = current_player.color
+            @cells[input] = true
+            return board.new_board
         end
     end
 
-
+    def check_winner?(current_player)
+        winner_cases = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7] ]
+        winner_cases.each do |x|
+            x.all? { |icon| icon == "X" || icon == "O"}
+        end
+    end
 
 end
 
-test = Board.new
-
-puts test.display_board
-#test.ask_for_move
-#puts test.display_board_with_player_input
