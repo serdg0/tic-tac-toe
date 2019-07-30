@@ -37,7 +37,8 @@ class Game
     def get_input
         puts "Make a shot"
         input = gets.chomp
-        if [1..9].include?(input.to_i)
+        array = [1,2,3,4,5,6,7,8,9]
+        if array.include?(input.to_i)
             input.to_i
         else
             puts "Not a valid input, put another one"
