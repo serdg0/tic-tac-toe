@@ -2,8 +2,9 @@ require_relative 'player.rb'
 require_relative 'board.rb'
 
 class Game
-    attr_accessor :turn
-    def initialize(player_1 = Player.new, player_2 = Player.new, board = Board.new)
+    attr_accessor :turn, :player_1, :player_2, :board
+
+    def initialize(player_1 = nil, player_2 = nil, board = nil)
         @player_1 = player_1
         @player_2 = player_2
         @board = board
@@ -57,24 +58,53 @@ class Game
     def display_board
         @board.new_board
     end
+
+    def play_again
+        puts "Another game? y/n"
+        input = gets.chomp.downcase
+        if input == "y"
+            player_one = Player.new
+            player_two = Player.new
+            main_board = Board.new
+            main_game = Game.new(player_one, player_two, main_board) 
+            TicTacToe.new(main_game)
+        else
+            puts "Bye bye!"
+        end
+    end
 end
 
 class TicTacToe
-    
-    game = Game.new
-    current_player = game.set_players
-    game.display_board
-    while game.turn <= 9
-        input = game.get_input
-        game.switch_board(input,current_player)
-        puts "#{current_player} WINS!" if game.winner?(current_player)
-        game.display_board
-        turn_count
-        current_player = (current_player == player_1 ? player_2 : player_1)
+    attr_accessor :game
+
+    def initialize(game)
+        @game = game
     end
-    game.draw
+   
+    current_player = @game.set_players
+    @game.display_board
+
+    while @game.turn <= 9
+        if @game.turn == 9
+            @game.draw
+            break
+        end
+        input = @game.get_input
+        @game.switch_board(input,current_player)
+        if @game.winner?(current_player)
+            puts "#{current_player} WINS!" 
+            print "      --------> #{@game.display_board}"
+            break
+        end
+        @game.display_board
+        @game.turn_count
+        current_player = (current_player == @player_1 ? @player_2 : @player_1)
+    end
+    @game.play_again
 end
 
-TicTacToe.new
-
-
+player_one = Player.new
+player_two = Player.new
+main_board = Board.new
+main_game = Game.new(player_one, player_two, main_board) 
+TicTacToe.new(main_game)

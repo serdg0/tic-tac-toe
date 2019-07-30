@@ -47,15 +47,24 @@ class Board
         else   
             @grid_accessor[input] = current_player.color
             @cells[input] = true
-            return board.new_board
+            return new_board
         end
     end
 
     def check_winner?(current_player)
-        winner_cases = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7] ]
-        winner_cases.each do |x|
-            x.all? { |icon| icon == "X" || icon == "O"}
+        winner_cases = [ [@grid_accessor[1],@grid_accessor[2],@grid_accessor[3]],
+         [@grid_accessor[4],@grid_accessor[5],@grid_accessor[6]],
+         [@grid_accessor[7],@grid_accessor[8],@grid_accessor[9]],
+         [@grid_accessor[1],@grid_accessor[4],@grid_accessor[7]],
+         [@grid_accessor[2],@grid_accessor[5],@grid_accessor[8]],
+         [@grid_accessor[3],@grid_accessor[6],@grid_accessor[9]],
+         [@grid_accessor[1],@grid_accessor[5],@grid_accessor[9]],
+         [@grid_accessor[3],@grid_accessor[5],@grid_accessor[7]] ]
+        
+         winner_cases.each do |x|
+            x.all? { |icon| icon == current_player.color }
         end
+        
     end
 
 end
