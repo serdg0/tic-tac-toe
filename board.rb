@@ -41,14 +41,9 @@ class Board
     end
 
     def return_board_input(input,current_player)
-        if check_cell_occupied?(input)
-            puts "This cell is occupied, try another one"
-            return get_input
-        else   
             @grid_accessor[input] = current_player.color
             @cells[input] = true
             return new_board
-        end
     end
 
     def check_winner?(current_player)
@@ -62,7 +57,7 @@ class Board
          [@grid_accessor[3],@grid_accessor[5],@grid_accessor[7]] ]
         
          winner_cases.each do |x|
-            x.all? { |icon| icon == current_player.color }
+            return true if x.all? { |icon| icon == current_player.color }
         end
         
     end

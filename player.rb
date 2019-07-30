@@ -14,4 +14,21 @@ class String
   def blue 
     colorize(34)
   end
+
+  def blink
+    colorize(1)
+  end
+
+  def yellow
+    colorize(93)
+  end
+
+  def red_background
+    colorize(101)
+  end
+
+  def white
+    colorize(37)
+  end
+
 end

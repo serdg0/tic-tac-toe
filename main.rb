@@ -23,6 +23,10 @@ class Game
         return @player_1
     end
 
+    def current_name(current_player)
+        current_player.name
+    end
+
     def turn
         @turn
     end
@@ -31,24 +35,36 @@ class Game
         @turn+=1
     end
 
+    def player_turn(turn)
+        if (turn % 2 == 0)
+            return @player_1
+        else
+            return @player_2
+        end
+    end
+
     def draw
         puts "This is a draw"
     end
 
-    def get_input
-        puts "Make a shot"
+    def get_input(current_name)
+        puts "Make your shot, #{current_name}"
         input = gets.chomp
         array = [1,2,3,4,5,6,7,8,9]
         if array.include?(input.to_i)
             input.to_i
         else
             puts "Not a valid input, put another one"
-            return get_input
+            return get_input(current_name)
         end
     end
 
     def switch_board(input, current_player)
-        @board.return_board_input(input,current_player)
+        if @board.check_cell_occupied?(input)
+            puts "cell occupied, try another one"
+        else
+            @board.return_board_input(input,current_player)
+        end
     end
 
     def winner?(current_player)
@@ -59,27 +75,13 @@ class Game
         @board.new_board
     end
 
-    def play_again
-        puts "Another game? y/n"
-        input = gets.chomp.downcase
-        if input == "y"
-            player_one = Player.new
-            player_two = Player.new
-            main_board = Board.new
-            main_game = Game.new(player_one, player_two, main_board) 
-            TicTacToe.new(main_game)
-        else
-            puts "Bye bye!"
-        end
-    end
 end
 
 class TicTacToe
-    attr_accessor :game
 
-    def initialize(game)
-        @game = game
-    end
+    #def initialize(game)
+        @game = Game.new(Player.new,Player.new,Board.new)
+    #end
    
     current_player = @game.set_players
     @game.display_board
@@ -89,22 +91,20 @@ class TicTacToe
             @game.draw
             break
         end
-        input = @game.get_input
+        input = @game.get_input(@game.current_name(current_player))
         @game.switch_board(input,current_player)
-        if @game.winner?(current_player)
-            puts "#{current_player} WINS!" 
-            print "      --------> #{@game.display_board}"
+        if @game.winner?(current_player) == true
+            puts "  #{@game.current_name(current_player)} WINS!   ".blink.yellow.red_background
             break
         end
-        @game.display_board
-        @game.turn_count
-        current_player = (current_player == @player_1 ? @player_2 : @player_1)
+        @game.turn = @game.turn_count
+        current_player = @game.player_turn(@game.turn)
     end
-    @game.play_again
+    #@game.play_again
 end
 
 player_one = Player.new
 player_two = Player.new
 main_board = Board.new
 main_game = Game.new(player_one, player_two, main_board) 
-TicTacToe.new(main_game)
+TicTacToe.new#(main_game)
