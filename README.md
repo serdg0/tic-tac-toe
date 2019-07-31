@@ -1,8 +1,8 @@
 # tic-tac-toe
 
 ### To - do: 
-* Fix the cell occupied bug
-* Make a "play again" method that works after a game
+*(DONE) Fix the cell occupied bug
+*(DONE) Make a "play again" method that works after a game
 * Style it (greeting message, put color on stringg like the draw message)
 * Make the TicTacToe class run with the following syntax: 
     player_one = Player.new

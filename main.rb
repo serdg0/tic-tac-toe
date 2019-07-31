@@ -32,7 +32,7 @@ class Game
     end
 
     def turn_count
-        @turn+=1
+        @turn += 1
     end
 
     def player_turn(turn)
@@ -59,12 +59,17 @@ class Game
         end
     end
 
-    def switch_board(input, current_player)
+    def notRepeated(input)
         if @board.check_cell_occupied?(input)
             puts "cell occupied, try another one"
+            return true
         else
-            @board.return_board_input(input,current_player)
+            false
         end
+    end
+
+    def switch_board(input, current_player)
+        @board.return_board_input(input,current_player)
     end
 
     def winner?(current_player)
@@ -79,26 +84,35 @@ end
 
 class TicTacToe
 
-    #def initialize(game)
-        @game = Game.new(Player.new,Player.new,Board.new)
-    #end
+    @game = Game.new(Player.new,Player.new,Board.new)
    
     current_player = @game.set_players
     @game.display_board
-
+    
     while @game.turn <= 9
         if @game.turn == 9
             @game.draw
             break
         end
         input = @game.get_input(@game.current_name(current_player))
-        @game.switch_board(input,current_player)
-        if @game.winner?(current_player) == true
-            puts "  #{@game.current_name(current_player)} WINS!   ".blink.yellow.red_background
-            break
+        inputNotRepeated = @game.notRepeated(input)
+        if(inputNotRepeated == false)
+            @game.switch_board(input,current_player)
+            if @game.winner?(current_player) == true
+                puts "  #{@game.current_name(current_player)} WINS!   ".blink.yellow.red_background
+                puts "If you want to play again type Y if not type anything else"
+                reGame = gets.chomp
+                if reGame == "Y" || reGame == "y"
+                    @game = Game.new(Player.new,Player.new,Board.new)
+                    current_player = @game.set_players
+                else
+                    puts "Game Ended Thankyou For Playing"
+                    break
+                end
+            end
+            @game.turn = @game.turn_count
+            current_player = @game.player_turn(@game.turn)
         end
-        @game.turn = @game.turn_count
-        current_player = @game.player_turn(@game.turn)
     end
     #@game.play_again
 end
