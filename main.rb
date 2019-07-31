@@ -164,8 +164,7 @@ class Game
 end
 
 class TicTacToe
-
-    #@game = Game.new(Player.new,Player.new,Board.new)
+    
     def initialize(game)
         @game = game
     end
