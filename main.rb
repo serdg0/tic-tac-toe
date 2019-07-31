@@ -12,11 +12,67 @@ class Game
     end
 
     def set_players
-        puts "What's your name?"
+        puts "
+               
+            HEEEELLooOO
+
+            
+            　         　 　　 　 ·
+            　  * .
+            　 　　 *　　 *  　 .         　 　　 　 ·
+            　  * .
+            　 　　 *　　 *  　 .
+
+ 　　 　 ·
+            　  * .
+            　 　　 *　　 *  　 .
+
+
+
+            ███████▓█████▓▓╬╬╬╬╬╬╬╬▓███▓╬╬╬╬╬╬╬▓╬╬▓█ 
+            ████▓▓▓▓╬╬▓█████╬╬╬╬╬╬███▓╬╬╬╬╬╬╬╬╬╬╬╬╬█ 
+            ███▓▓▓▓╬╬╬╬╬╬▓██╬╬╬╬╬╬▓▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            ████▓▓▓╬╬╬╬╬╬╬▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            ███▓█▓███████▓▓███▓╬╬╬╬╬╬▓███████▓╬╬╬╬▓█ 
+            ████████████████▓█▓╬╬╬╬╬▓▓▓▓▓▓▓▓╬╬╬╬╬╬╬█ 
+            ███▓▓▓▓▓▓▓╬╬▓▓▓▓▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            ████▓▓▓╬╬╬╬▓▓▓▓▓▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            ███▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            █████▓▓▓▓▓▓▓▓█▓▓▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█ 
+            █████▓▓▓▓▓▓▓██▓▓▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬██ 
+            █████▓▓▓▓▓████▓▓▓█▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬██ 
+            ████▓█▓▓▓▓██▓▓▓▓██╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬██ 
+            ████▓▓███▓▓▓▓▓▓▓██▓╬╬╬╬╬╬╬╬╬╬╬╬█▓╬▓╬╬▓██ 
+            █████▓███▓▓▓▓▓▓▓▓████▓▓╬╬╬╬╬╬╬█▓╬╬╬╬╬▓██ 
+            █████▓▓█▓███▓▓▓████╬▓█▓▓╬╬╬▓▓█▓╬╬╬╬╬╬███ 
+            ██████▓██▓███████▓╬╬╬▓▓╬▓▓██▓╬╬╬╬╬╬╬▓███ 
+            ███████▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓╬╬╬╬╬╬╬╬╬╬╬████ 
+            ███████▓▓██▓▓▓▓▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓████ 
+            ████████▓▓▓█████▓▓╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬▓█████ 
+            █████████▓▓▓█▓▓▓▓▓███▓╬╬╬╬╬╬╬╬╬╬╬▓██████ 
+            ██████████▓▓▓█▓▓▓╬▓██╬╬╬╬╬╬╬╬╬╬╬▓███████ 
+            ███████████▓▓█▓▓▓▓███▓╬╬╬╬╬╬╬╬╬▓████████ 
+            ██████████████▓▓▓███▓▓╬╬╬╬╬╬╬╬██████████ 
+            ███████████████▓▓▓██▓▓╬╬╬╬╬╬▓███████████
+
+                
+                R u Ready to play some
+                         
+                        TickTackToe
+
+
+            What is your name ....    ??????     
+
+                ".red
         @player_1.name = gets.chomp
         @player_1.color = "X".red
-        puts "Your icon is #{@player_1.color}. You will make the first shot"
-        puts "And your name?"
+        puts "
+        
+        Your icon is #{@player_1.color}. You will make the first shot"
+        puts "
+        
+        "
+        puts"               And your name is ...?".red
         @player_2.name = gets.chomp
         @player_2.color = "O".blue
         puts "Your icon is #{@player_2.color}. You will go second"
@@ -44,24 +100,49 @@ class Game
     end
 
     def draw
-        puts "This is a draw"
+        puts "
+        
+        This is a draw .... :/ 
+        
+              
+                Shouldn't You Play Again ....
+
+
+
+        Or some 
+
+
+
+
+        ___
+        (._.)
+        <|>
+        _/\_
+
+        ".yellow
     end
 
     def get_input(current_name)
-        puts "Make your shot, #{current_name}"
+        puts "
+        
+        Make your shot, #{current_name}"
         input = gets.chomp
         array = [1,2,3,4,5,6,7,8,9]
         if array.include?(input.to_i)
             input.to_i
         else
-            puts "Not a valid input, put another one"
+            puts "
+            
+            Not a valid input, put another one"
             return get_input(current_name)
         end
     end
 
     def notRepeated(input)
         if @board.check_cell_occupied?(input)
-            puts "cell occupied, try another one"
+            puts "
+            
+            Opps cell occupied, ;) try another one"
             return true
         else
             false
@@ -99,7 +180,23 @@ class TicTacToe
         if(inputNotRepeated == false)
             @game.switch_board(input,current_player)
             if @game.winner?(current_player) == true
-                puts "  #{@game.current_name(current_player)} WINS!   ".blink.yellow.red_background
+                puts "  #{@game.current_name(current_player)} 
+                
+            
+                WINS! 
+                
+                
+                                    ......................
+                                    ...................
+                                    .............
+                                    ......    
+                
+                ──────▄▀▄─────▄▀▄
+                ─────▄█░░▀▀▀▀▀░░█▄
+                ─▄▄──█░░░░░░░░░░░█──▄▄
+                █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
+                
+                ".blink.yellow.red_background
                 puts "If you want to play again type Y if not type anything else"
                 reGame = gets.chomp
                 if reGame == "Y" || reGame == "y"
@@ -114,11 +211,10 @@ class TicTacToe
             current_player = @game.player_turn(@game.turn)
         end
     end
-    #@game.play_again
 end
 
 player_one = Player.new
 player_two = Player.new
 main_board = Board.new
 main_game = Game.new(player_one, player_two, main_board) 
-TicTacToe.new#(main_game)
+TicTacToe.new
