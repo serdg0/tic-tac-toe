@@ -165,8 +165,12 @@ end
 
 class TicTacToe
 
-    @game = Game.new(Player.new,Player.new,Board.new)
-   
+    #@game = Game.new(Player.new,Player.new,Board.new)
+    def initialize(game)
+        @game = game
+    end
+
+    def start
     current_player = @game.set_players
     @game.display_board
     
@@ -197,13 +201,16 @@ class TicTacToe
                 █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
                 
                 ".blink.yellow.red_background
-                puts "If you want to play again type Y if not type anything else"
+                puts "If you want to play again type Y, if not type anything else"
                 reGame = gets.chomp
                 if reGame == "Y" || reGame == "y"
-                    @game = Game.new(Player.new,Player.new,Board.new)
-                    current_player = @game.set_players
+                    player_one = Player.new
+                    player_two = Player.new
+                    main_board = Board.new
+                    main_game = Game.new(player_one, player_two, main_board) 
+                    TicTacToe.new(main_game).start
                 else
-                    puts "Game Ended Thankyou For Playing"
+                    puts "Game Over. Thank you for playing!"
                     break
                 end
             end
@@ -212,9 +219,10 @@ class TicTacToe
         end
     end
 end
+end
 
 player_one = Player.new
 player_two = Player.new
 main_board = Board.new
 main_game = Game.new(player_one, player_two, main_board) 
-TicTacToe.new
+TicTacToe.new(main_game).start
